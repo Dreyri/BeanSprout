@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 2.6)
 project(BeanSprout)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+
 SET(INCLUDE_DIRS "/opt/local/include")
 FILE(GLOB_RECURSE LibFiles "src/signal/*.h")
 add_custom_target(headers SOURCES ${LibFiles})
