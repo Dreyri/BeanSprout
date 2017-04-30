@@ -1,6 +1,20 @@
+find_package(GLM)
+
+IF(GLM_FOUND)
+    INCLUDE_DIRECTORIES(${GLM_INCLUDE_DIRS})
+ENDIF()
+
+set(BeanSprout_DEBUG true)
+
+configure_file(
+    "${PROJECT_SOURCE_DIR}/src/beansproutconfig.h.in"
+    "${PROJECT_BINARY_DIR}/src/beansproutconfig.h")
+
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/src")
+
+
 add_subdirectory(graphics)
 add_subdirectory(input)
-add_subdirectory(math)
 add_subdirectory(signal)
 add_subdirectory(util)
 

@@ -2,8 +2,8 @@
 
 namespace BS
 {
-Texture2D::Texture2D(GLuint width, GLuint height, unsigned char* data)
-    : mWidth(width), mHeight(height), mInternalFormat(GL_RGBA), mImageFormat(GL_RGBA), mWrapS(GL_REPEAT), mWrapT(GL_REPEAT), mFilterMin(GL_LINEAR), mFilterMax(GL_LINEAR)
+Texture2D::Texture2D(GLuint width, GLuint height, GLuint internalFormat, GLuint imageFormat, unsigned char* data)
+    : mWidth(width), mHeight(height), mInternalFormat(internalFormat), mImageFormat(imageFormat), mWrapS(GL_REPEAT), mWrapT(GL_REPEAT), mFilterMin(GL_LINEAR), mFilterMax(GL_LINEAR)
 {
     //generate texture
     glGenTextures(1 , &mId);
@@ -22,5 +22,15 @@ Texture2D::Texture2D(GLuint width, GLuint height, unsigned char* data)
 void Texture2D::bind() const
 {
     glBindTexture(GL_TEXTURE_2D, mId);
+}
+
+GLuint Texture2D::getWidth() const
+{
+    return mWidth;
+}
+
+GLuint Texture2D::getHeight() const
+{
+    return mHeight;
 }
 }

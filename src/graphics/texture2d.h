@@ -1,8 +1,7 @@
 #ifndef TEXTURE2D_H
 #define TEXTURE2D_H
 
-#include <GLES2/gl2.h>
-#include <GL/gl.h>
+#include <OpenGL/gl.h>
 
 namespace BS
 {
@@ -21,9 +20,12 @@ private:
     GLuint mFilterMin;
     GLuint mFilterMax;
 public:
-    Texture2D(GLuint width, GLuint height, unsigned char* data);
+    Texture2D(GLuint width, GLuint height, GLuint internalFormat, GLuint imageFormat, unsigned char* data);
 
     void bind() const;
+
+    GLuint getWidth() const;
+    GLuint getHeight() const;
 };
 }
 

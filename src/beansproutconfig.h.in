@@ -1,0 +1,6 @@
+#ifndef BEANSPROUTCONFIG_H
+#define BEANSPROUTCONFIG_H
+
+#define __BS_DEBUG__ @BeanSprout_DEBUG@
+
+#endif // BEANSPROUTCONFIG_H

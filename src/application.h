@@ -15,6 +15,7 @@ private:
     ResourceManager* mResources;
 public:
     Application();
+    ~Application();
 };
 }
 

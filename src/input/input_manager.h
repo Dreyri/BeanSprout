@@ -3,9 +3,8 @@
 
 #include <GLFW/glfw3.h>
 #include <vector>
-#include "../math/vector2.h"
-#include "../graphics/window.h"
-#include "../signal/signal.h"
+#include "graphics/window.h"
+#include "signal/signal.h"
 #include "input_codes.h"
 
 namespace BS
@@ -44,7 +43,7 @@ public:
 
     void pollEvents();
 
-    Vector2d getCursorPosition() const;
+    glm::dvec2 getCursorPosition() const;
 
     Window* getWindow();
 

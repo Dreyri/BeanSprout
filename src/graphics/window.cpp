@@ -12,12 +12,6 @@ namespace BS
 Window::Window(const std::string& name, int width, int height, WindowMode mode, int refreshrate)
     : mName(name), mWindowMode(mode), mInput(nullptr), mRefreshRate(refreshrate)
 {
-    if(!glfwInit())
-    {
-        glfwTerminate();
-        std::cout << "Failed to init GLFW!" << std::endl;
-        return;
-    }
 
     GLFWmonitor* monitor = nullptr;
 
@@ -37,7 +31,6 @@ Window::Window(const std::string& name, int width, int height, WindowMode mode, 
     mWindow = glfwCreateWindow(width, height, mName.c_str(), monitor, NULL);
     if(!mWindow)
     {
-        glfwTerminate();
         std::cout << "Failed to create GLFW window!" << std::endl;
         return;
     }
@@ -57,7 +50,6 @@ Window::~Window()
 {
     delete mInput;
     glfwDestroyWindow(mWindow);
-    glfwTerminate();
 }
 
 void Window::setWindowMode(WindowMode mode)
@@ -71,14 +63,14 @@ void Window::setWindowMode(WindowMode mode)
 
     if(mode == WindowMode::FULLSCREEN)
     {
-        glfwSetWindowMonitor(mWindow, glfwGetPrimaryMonitor(), 0, 0, size.getWidth(), size.getHeight(), mRefreshRate);
+        glfwSetWindowMonitor(mWindow, glfwGetPrimaryMonitor(), 0, 0, size.x, size.y, mRefreshRate);
         mWindowMode = mode;
         return;
     }
 
     else if(mode == WindowMode::DEFAULT)
     {
-        glfwSetWindowMonitor(mWindow, nullptr, 0, 0, size.getWidth(), size.getHeight(), mRefreshRate);
+        glfwSetWindowMonitor(mWindow, nullptr, 0, 0, size.x, size.y, mRefreshRate);
         mWindowMode = mode;
         return;
     }
@@ -110,14 +102,14 @@ void Window::setTitle(const std::string& title)
     glfwSetWindowTitle(getGLFWwindow(), title.c_str());
 }
 
-void Window::setSizeLimits(const Vector2i& min, const Vector2i& max)
+void Window::setSizeLimits(const glm::ivec2& min, const glm::ivec2& max)
 {
-    glfwSetWindowSizeLimits(getGLFWwindow(), min.getWidth(), min.getHeight(), max.getWidth(), max.getHeight());
+    glfwSetWindowSizeLimits(getGLFWwindow(), min.x, min.y, max.x, max.y);
 }
 
-void Window::setSize(const Vector2i& size)
+void Window::setSize(const glm::ivec2& size)
 {
-    glfwSetWindowSize(getGLFWwindow(), size.getWidth(), size.getHeight());
+    glfwSetWindowSize(getGLFWwindow(), size.x, size.y);
 }
 
 void Window::iconify()
@@ -164,13 +156,13 @@ bool Window::isAlwaysOnTop() const
     return glfwGetWindowAttrib(getGLFWwindow(), GLFW_FLOATING);
 }
 
-Vector2i Window::getSize() const
+glm::ivec2 Window::getSize() const
 {
     int width, height;
 
     glfwGetWindowSize(mWindow, &width, &height);
 
-    return Vector2i(width, height);
+    return glm::ivec2(width, height);
 }
 
 void Window::swapBuffers() const

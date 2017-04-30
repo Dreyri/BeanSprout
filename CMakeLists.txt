@@ -17,3 +17,5 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CLANG_CXX1Z_SUPPORT}")
 
 add_subdirectory(src)
 add_subdirectory(test)
+
+file(COPY shaders DESTINATION "${PROJECT_BINARY_DIR}/test/")

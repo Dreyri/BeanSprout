@@ -11,11 +11,6 @@ namespace BS
 InputManager::InputManager(Window* window)
     : mWindow(window)
 {
-    if(!glfwInit())
-    {
-        glfwTerminate();
-        std::cout << "Could not initialize GLFW!" << std::endl;
-    }
     if(mWindow != nullptr)
         init();
 }
@@ -197,12 +192,12 @@ void InputManager::pollEvents()
     glfwPollEvents();
 }
 
-Vector2d InputManager::getCursorPosition() const
+glm::dvec2 InputManager::getCursorPosition() const
 {
     double xpos, ypos;
     glfwGetCursorPos(mWindow->getGLFWwindow(), &xpos, &ypos);
 
-    return Vector2d(xpos, ypos);
+    return glm::dvec2(xpos, ypos);
 }
 
 Window* InputManager::getWindow()

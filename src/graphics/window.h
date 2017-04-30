@@ -3,7 +3,7 @@
 
 #include <string>
 #include <GLFW/glfw3.h>
-#include "math/vector2.h"
+#include <glm/glm.hpp>
 
 namespace BS
 {
@@ -42,8 +42,8 @@ public:
     WindowMode getWindowMode() const { return mWindowMode; }
 
     void setTitle(const std::string& title);
-    void setSizeLimits(const Vector2i& min, const Vector2i& max);
-    void setSize(const Vector2i& size);
+    void setSizeLimits(const glm::ivec2& min, const glm::ivec2& max);
+    void setSize(const glm::ivec2& size);
 
     void iconify();
     void restore();
@@ -57,7 +57,7 @@ public:
     bool isDecorated() const;
     bool isAlwaysOnTop() const;
 
-    Vector2i getSize() const;
+    glm::ivec2 getSize() const;
 
     void swapBuffers() const;
 private:
